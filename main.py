@@ -24,3 +24,5 @@ requests.post(url+'/rest/user/login', data={'email':'chris.pike@juice-sh.op\'--'
 requests.post(url+'/rest/user/login', data={'email':'amy@juice-sh.op','password':'K1f.....................'})
 # ---- Login Bender (Log in with Bender's user account.)
 requests.post(url+'/rest/user/login', data={'email':'bender@juice-sh.op\'--','password':'a'})
+# ---- Login Jim (Log in with Jim's user account.)
+requests.post(url+'/rest/user/login', data={'email':'jim@juice-sh.op','password':'ncc-1701'})
