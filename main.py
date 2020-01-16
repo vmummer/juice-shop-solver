@@ -16,3 +16,4 @@ requests.get(url+'/redirect?to=https://blockchain.info/address/1AbKfgvw9psQ41NbL
 # ---- Login Admin (Log in with the administrator's user account.)
 # ---- Password Strength (Log in with the administrator's user credentials without previously changing them or applying SQL Injection.)
 requests.post(url+'/rest/user/login', data={'email':'admin@juice-sh.op','password':'admin123'})
+
