@@ -104,6 +104,8 @@ requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captch
 requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captchaId'],'captcha':captcha['answer'],'comment':'epilogue-js','rating':3})
 # ---- Steganography (Rat out a notorious character hiding in plain sight in the shop. (Mention the exact name of the character))
 requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captchaId'],'captcha':captcha['answer'],'comment':'Pickle Rick','rating':3})
+# ---- Vulnerable Library (Inform the shop about a vulnerable library it is using. (Mention the exact library name and version in your comment))
+requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captchaId'],'captcha':captcha['answer'],'comment':'sanitize-html 1.4.2','rating':3})
 # ---- Weird Crypto (Inform the shop about an algorithm or library it should definitely not use the way it does.)
 requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captchaId'],'captcha':captcha['answer'],'comment':'z85','rating':3})
 
