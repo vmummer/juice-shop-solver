@@ -3,6 +3,7 @@ OWASP - Juice shop solver
 
 ## How to install it
 - Change the URL variable to your wanted juice shop (you can install it with https://github.com/bkimminich/juice-shop)
+- Open the specified URL in a browser (if you want to see notifications and codes)
 - Launch the script in Python
 - Enjoy !
 
