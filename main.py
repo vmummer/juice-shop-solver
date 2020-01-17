@@ -95,6 +95,8 @@ requests.post(url+'/rest/user/login', data={'email':'support@juice-sh.op','passw
 requests.post(url+'/rest/user/reset-password',data={'email':'bjoern@owasp.org','answer':'Zaya','new':'bjoern','repeat':'bjoern'})
 # ---- Reset Bender's Password (Reset Bender's password via the Forgot Password mechanism with the original answer to his security question.)
 requests.post(url+'/rest/user/reset-password',data={'email':'bender@juice-sh.op','answer':'Stop\'n\'Drop','new':'bender','repeat':'bender'})
+# ---- Reset Bjoern's Password (Reset the password of Bjoern's internal account via the Forgot Password mechanism with the original answer to his security question.)
+requests.post(url+'/rest/user/reset-password',data={'email':'bjoern@juice-sh.op','answer':'West-2082','new':'bjoern','repeat':'bjoern'})
 # ---- Reset Jim's Password (Reset Jim's password via the Forgot Password mechanism with the original answer to his security question.)
 requests.post(url+'/rest/user/reset-password',data={'email':'jim@juice-sh.op','answer':'Samuel','new':'jimjim','repeat':'jimjim'})
 
