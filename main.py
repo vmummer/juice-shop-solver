@@ -98,6 +98,8 @@ for i in range(11):
 # See "Captcha Bypass" part
 # ---- Leaked Unsafe Product (Identify an unsafe product that was removed from the shop and inform the shop which ingredients are dangerous.)
 requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captchaId'],'captcha':captcha['answer'],'comment':'Eurogium Edule Hueteroneel','rating':3})
+# ---- Steganography (Rat out a notorious character hiding in plain sight in the shop. (Mention the exact name of the character))
+requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captchaId'],'captcha':captcha['answer'],'comment':'Pickle Rick','rating':3})
 # ---- Weird Crypto (Inform the shop about an algorithm or library it should definitely not use the way it does.)
 requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captchaId'],'captcha':captcha['answer'],'comment':'z85','rating':3})
 
