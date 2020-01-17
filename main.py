@@ -53,6 +53,8 @@ requests.get(url+'/.well-known/security.txt')
 requests.post(url+'/file-upload', files={'file':open('file-upload/Upload Size.pdf','rb')})
 # ---- Upload Type (Upload a file that has no .pdf or .zip extension.)
 requests.post(url+'/file-upload', files={'file':open('file-upload/Upload Type.txt','rb')})
+# ---- Whitelist Bypass (Enforce a redirect to a page you are not supposed to redirect to.)
+requests.get(url+'/redirect?to=http://kimminich.de?pwned=https://github.com/bkimminich/juice-shop')
 
 # ==== No required action - Login challenges ====
 # ---- Ephemeral Accountant (Log in with the (non-existing) accountant acc0unt4nt@juice-sh.op without ever registering that user.)
