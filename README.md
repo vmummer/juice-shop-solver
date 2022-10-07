@@ -1,8 +1,10 @@
 # Juice shop solver
-OWASP - Juice shop solver
+OWASP - Juice shop solver - Based on work done by Bryan Fauquembergue
+- Small enhanced have been made to allow changing of the URL via commandline
 
 ## How to install it
-- Change the URL variable to your wanted juice shop (you can install it with https://github.com/bkimminich/juice-shop)
+- Change the default URL variable to your wanted juice shop in the script or you can add it to the command line
+    main.py http://juiceshop.local:3000   << For example
 - Open the specified URL in a browser (if you want to see notifications and codes)
 - Launch the script in Python
 - Enjoy !
