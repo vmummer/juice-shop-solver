@@ -2,7 +2,7 @@
 # Open this URL before running the script
 print("Juice Shop Solver - Original code by Bryan Fauquembergue")
 import sys
-if len(sys.argv) == 1: sys.argv[1:] = ["http://localhost:3000"]
+if len(sys.argv) == 1: sys.argv[1:] = ["http://juiceshop.local:80"]
 url = sys.argv[1]
 
 import requests
