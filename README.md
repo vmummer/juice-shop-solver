@@ -1,5 +1,5 @@
 # Juice shop solver
-OWASP - Juice shop solver - Based on work done by Bryan Fauquembergue
+OWASP - Juice Shop Solver - Based on work done by Bryan Fauquembergue
 - Small enhanced have been made to allow changing of the URL via commandline
 
 ## How to install it
