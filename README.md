@@ -1,4 +1,4 @@
-# Juice shop solver
+# Juice Shop Solver
 OWASP - Juice Shop Solver - Based on work done by Bryan Fauquembergue
 - Small enhanced have been made to allow changing of the URL via commandline
 
