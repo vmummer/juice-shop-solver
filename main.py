@@ -2,7 +2,7 @@
 # Open this URL before running the script
 # Oct 9, 2024 - Vince Mammoliti - vincem@checkpoint.com
 print("Juice Shop Solver - Original code by Bryan Fauquembergue")
-print("  - Enhanced to detect in path WAF blocking - by Vince Mammoliti, Oct 2024")
+print("  - Enhanced to detect in line WAF blocking - by Vince Mammoliti, Oct 2024")
 import sys
 if len(sys.argv) == 1: sys.argv[1:] = ["http://juiceshop.local:80"]
 url = sys.argv[1]
