@@ -38,7 +38,7 @@ def is_valid_url_format(url: str) -> bool:
     """
     url_pattern = re.compile(
         r'^https?://'
-        r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+[A-Z]{2,6}\.?|'
+        r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+[A-Z0-9]{2,63}(?:\.)?|'  # Max 63 chars per RFC 1035
         r'localhost|'
         r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})'
         r'(?::\d+)?'
@@ -117,7 +117,7 @@ def validate_url(url: str, timeout: int = 5) -> bool:
 # Script header
 print("Juice Shop Solver - Original code by Bryan Fauquembergue")
 print("  - Enhanced to detect in line WAF blocking - by Vince Mammoliti, Oct 2024")
-print("  - Added URL validation and error handling - Sept 30, 2024")
+print("  - Added URL validation and error handling - Sept 30, 2025")
 
 # Process command line arguments
 if len(sys.argv) == 1:
